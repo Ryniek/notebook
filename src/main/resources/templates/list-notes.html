@@ -24,19 +24,17 @@
             display: flex;
             justify-content: space-evenly;
             flex-wrap: wrap;
-            align-items: center;
+            align-items: flex-start;
             width: 70%;
             margin: auto;
             background-color: #1d1e20;
         }
 
         .one {
-            border-style: solid;
-            border-width: 1px;
-            border-color: #5f6368;
-            width: 15%;
+            border: 1px solid #5f6368;
+            width: 19%;
             margin-top: 10px;
-            border-radius: 7%;
+            border-radius: 8px;
             background-color: #202124;
         }
 
@@ -69,7 +67,8 @@
 
         .button {
             background-color: #202124;
-            border: solid #5f6368;
+            border: 1px solid #5f6368;
+            border-radius: 5px;
             color: #b7bbc0;
             padding: 5px 12px;
             text-align: center;
@@ -89,28 +88,120 @@
             font-size: 25px;
             width: 25%;
         }
+
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0); /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #202124;
+            margin: auto;
+            padding: 20px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 20px;
+            border: 1px solid #5f6368;
+            border-radius: 5px;
+            width: 35%;
+            color: #b7bbc0;
+        }
+
+        input[type=text], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #5f6368;
+            border-radius: 7px;
+            box-sizing: border-box;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 20px;
+            background-color: #202124;
+            color: #b7bbc0;
+        }
+
+        input[type=submit] {
+            background-color: #1d1e20;
+            color: #b7bbc0;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 20px;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: 1px solid #5f6368;
+            border-radius: 7px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
-    <div class="top" th:switch="${notes}">
-        <a href="/edit" class="add">Add note</a>
-    </div>
+<div class="top" th:switch="${notes}">
+    <a href="/edit" class="add">Add note</a>
+</div>
 
-    <div class='all'>
-        <div class='one' th:each="note : ${notes}">
-            <div class='title' th:text="${note.title}"></div>
-            <div class='ad'>
-                <p th:text="${note.author}"></p>
-                <p th:text="${note.date}"></p>
-            </div>
-            <div class='note' th:text="${note.message}"></div>
-            <div class='buttons'>
-                <a th:href="@{/edit/{id}(id=${note.id})}" class="button">Edit</a>
-                <a th:href="@{/delete/{id}(id=${note.id})}" class="button">Delete</a>
-            </div>
+<div class='all'>
+    <div class='one' th:each="note : ${notes}">
+        <div class='title' th:text="${note.title}"></div>
+        <div class='ad'>
+            <p th:text="${note.author}"></p>
+            <p th:text="${note.date}"></p>
+        </div>
+        <div class='note' th:text="${note.message}"></div>
+        <div class='buttons'>
+            <a th:href="@{/edit/{id}(id=${note.id})}" class="button">Edit</a>
+            <a href="#" class="button" id="delBtn">Delete</a>
         </div>
     </div>
+</div>
+<!--"-->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <p>Podaj nazwę autora notatki w celu potwierdzenia usunięcia:</p>
+        <input type="text" id="confirmation">
+        <div th:each="note : ${notes}" class="buttons">
+            <a th:href="@{/delete/{id}(id=${note.id})}" id="del">Delete</a>
+            <a type="submit" id="cancel">Cancel</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("delBtn");
+
+    // Get the <span> element that closes the modal
+    var cancel = document.getElementById("cancel");
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    cancel.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
 
 </body>
 

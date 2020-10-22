@@ -87,6 +87,7 @@
         <input type="text" th:field="*{author}" class="form-control" id="author" placeholder="Author"/>
         <input type="text" th:field="*{message}" class="form-control" id="message" placeholder="Note"/>
         <input type="date" th:field="*{date}" class="form-control" id="date" placeholder="Date"/>
+        <input type="text" class="form-control" id="question" placeholder="Ile wynosi pierwiastek kwadratowy z 9?" required pattern="3" oninvalid="setCustomValidity('Niepoprawna odpowiedź.')">
         <input type="submit" value=" Submit ">
         <input type="hidden" id="id" th:field="*{id}">
     </form>
