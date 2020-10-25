@@ -45,8 +45,7 @@ public class NoteController {
     @RequestMapping(path = "/delete/{id}")
     public String deleteNoteById(Model model, @PathVariable("id") Long id)
     {
-        noteService.deleteNoteById(id);
-        return "redirect:/";
+        return "delete-note";
     }
 
     @RequestMapping(path = "/createNote", method = RequestMethod.POST)

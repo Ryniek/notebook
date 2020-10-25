@@ -37,6 +37,16 @@ public class NoteService {
         }
     }
 
+    public Note getNoteByAuthor(String author) {
+        Optional<Note> note = noteRepo.findByAuthor(author);
+
+        if (note.isPresent()) {
+            return note.get();
+        } else {
+            return null;
+        }
+    }
+
     public Note createOrUpdateNote(Note note) {
         if (note.getId() == null) {
             note = noteRepo.save(note);
