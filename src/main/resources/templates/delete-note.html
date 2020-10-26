@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Add/Edit Note</title>
+    <title>Delete Note</title>
     <style>
         body {
             background-color: #1d1e20;
@@ -72,22 +72,49 @@
             border-radius: 7px;
             cursor: pointer;
         }
+
+        .button {
+            width: 25%;
+            background-color: #1d1e20;
+            color: #b7bbc0;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 20px;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: 1px solid #5f6368;
+            border-radius: 7px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .span {
+            color: #910c0c;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 20px;
+            margin-top: 8px;
+        }
     </style>
 </head>
 
 <body>
 
 <div class="top">
-    <h1> Confirm deletion</h1>
+    <h1>Potwierdzenie usunięcia</h1>
 </div>
 
 <div class="add">
-    <form action="#" th:action="@{/createNote}"  method="post">
-        <input type="text" class="form-control" id="deletion" placeholder="Podaj autora notatki w celu usnięcia"/>
-        <input type="submit" value=" Submit ">
+    <form action="#" th:action="@{/delete/{id}(id=${id})}" th:object="${authorDto}" method="post">
+        <input type="text" th:field="*{author}" class="form-control" id="deletion"
+               placeholder="Podaj autora notatki w celu usunięcia"/>
+        <input type="submit" value="Usuń">
     </form>
+    <a th:href="@{/}" class="button">Powrót</a><br>
+    <span th:if="${message != null}">
+        <span th:text="${message}" class="span"></span>
+    </span>
 </div>
 
 </body>
-
 </html>

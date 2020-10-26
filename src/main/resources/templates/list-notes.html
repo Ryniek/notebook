@@ -75,6 +75,7 @@
             text-decoration: none;
             display: inline-block;
             font-size: 15px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
         }
 
         .add {
@@ -94,7 +95,7 @@
 
 <body>
 <div class="top" th:switch="${notes}">
-    <a href="/edit" class="add">Add note</a>
+    <a href="/edit" class="add">Dodaj notatkę</a>
 </div>
 
 <div class='all'>
@@ -106,8 +107,8 @@
         </div>
         <div class='note' th:text="${note.message}"></div>
         <div class='buttons'>
-            <a th:href="@{/edit/{id}(id=${note.id})}" class="button">Edit</a>
-            <a th:href="@{/delete/{id}(id=${note.id})}" class="button">Delete</a>
+            <a th:href="@{/edit/{id}(id=${note.id})}" class="button">Edytuj</a>
+            <a th:href="@{/delete/{id}(id=${note.id})}" class="button">Usuń</a>
         </div>
     </div>
 </div>
