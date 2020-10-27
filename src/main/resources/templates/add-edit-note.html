@@ -105,12 +105,13 @@
 </div>
 
 <div class="add">
-    <form action="#" th:action="@{/createNote}" th:object="${note}" method="post">
+    <form action="#" th:action="@{/createNote}" th:object="${noteDto}" method="post">
         <input type="text" th:field="*{title}" class="form-control" id="title" placeholder="Tytuł"/>
         <input type="text" th:field="*{author}" class="form-control" id="author" placeholder="Autor"/>
         <input type="text" th:field="*{message}" class="form-control" id="message" placeholder="Treść"/>
         <input type="date" th:field="*{date}" class="form-control" id="date" placeholder="Data"/>
-        <input th:object="${noteDto}" type="text" class="form-control" id="ans" placeholder="Ile wynosi pierwiastek kwadratowy z 9?">
+        <input type="text" th:field="*{answer}" class="form-control" id="ans"
+               placeholder="Ile wynosi pierwiastek kwadratowy z 9?">
         <input type="submit" value="Potwierdź">
         <input type="hidden" id="id" th:field="*{id}">
     </form>

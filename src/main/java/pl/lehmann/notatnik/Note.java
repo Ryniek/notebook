@@ -75,4 +75,14 @@ public class Note {
                 ", date=" + date +
                 '}';
     }
+
+    public static Note fromNoteDto(NoteDto noteDto) {
+        Note note = new Note();
+        note.setAuthor(noteDto.getAuthor());
+        note.setDate(noteDto.getDate());
+        note.setMessage(noteDto.getMessage());
+        note.setTitle(noteDto.getTitle());
+        note.setId(noteDto.getId());
+        return note;
+    }
 }

@@ -12,7 +12,6 @@ import java.util.Optional;
 public class NoteService {
 
     private NoteRepo noteRepo;
-    private String answer="3";
 
     @Autowired
     public NoteService(NoteRepo noteRepo) {
@@ -39,9 +38,11 @@ public class NoteService {
         }
     }
 
-    public Note createOrUpdateNote(Note note, NoteDto noteDto) {
-        if (answer.equals(noteDto.getAnswer()))
+    public Note createOrUpdateNote(NoteDto noteDto) {
+        if (!noteDto.getAnswer().equals("3")) {
             throw new IllegalArgumentException("Niepoprawna odpowiedź");
+        }
+        Note note = Note.fromNoteDto(noteDto);
         if (note.getId() == null) {
             note = noteRepo.save(note);
             return note;

@@ -32,10 +32,10 @@ public class NoteController {
     public String editNoteById(Model model, @PathVariable("id") Optional<Long> id) {
         if (id.isPresent()) {
             Note entity = noteService.getNoteById(id.get());
-            model.addAttribute("note", entity);
-            model.addAttribute("noteDto", new NoteDto());
+            NoteDto noteDto = NoteDto.fromNote(entity);
+            model.addAttribute("noteDto", noteDto);
         } else {
-            model.addAttribute("note", new Note());
+            model.addAttribute("noteDto", new NoteDto());
         }
         return "add-edit-note";
     }
@@ -59,9 +59,9 @@ public class NoteController {
     }
 
     @RequestMapping(path = "/createNote", method = RequestMethod.POST)
-    public String createOrUpdateNote(@ModelAttribute NoteDto noteDto, Note note, Model model) {
+    public String createOrUpdateNote(@ModelAttribute NoteDto noteDto, Model model) {
         try {
-            noteService.createOrUpdateNote(note, noteDto);
+            noteService.createOrUpdateNote(noteDto);
             return "redirect:/";
         } catch (IllegalArgumentException | EntityNotFoundException e) {
             model.addAttribute("messageAdd", e.getMessage());

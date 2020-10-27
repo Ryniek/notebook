@@ -55,4 +55,14 @@ public class NoteDto {
     public void setAnswer(String answer) {
         this.answer = answer;
     }
+
+    public static NoteDto fromNote(Note note) {
+        NoteDto noteDto = new NoteDto();
+        noteDto.setId(note.getId());
+        noteDto.setAuthor(note.getAuthor());
+        noteDto.setDate(note.getDate());
+        noteDto.setMessage(note.getMessage());
+        noteDto.setTitle(note.getTitle());
+        return noteDto;
+    }
 }
