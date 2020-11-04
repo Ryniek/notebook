@@ -19,7 +19,12 @@ Aplikacja notatnika pozwala na dodawanie, edytowanie i usuwanie notatek. Został
 
 ## Folder _service_:
 **Klasa _NoteService.java_:**
-> AAA
+> Klasa ta posiada adnotację _@Service_ i odpowiada za implementację metod z repozytorium.
+> - Na samym początku mamy wstrzyknięte rezporytorium oraz konstruktor z adnotacją _@Autowired_.
+> - Metoda _getAllNotes()_, która wykorzystując metodę dostarczoną przez repozytorium zwraca nam listę wszystkich notatek w bazie danych, jeżeli jakieś się tam znajdują, albo zwraca nam pustą listę, jeżeli baza danych jest pusta.
+> - Metoda _getNoteById()_, która wykorzystując metodę z repozytorium zwraca nam notatkę na podstawie przekazanego id, lub zwracam nam null w przypadku, gdy nie znajdzie notatki.
+> - Metoda _createOrUpdateNote()_, korzystając z metod z repozytorium dodaje lub edytuje notatkę. W momencie kiedy odwołamy się do meody przekazując id, przechodzi ona do fragmentu, który odpowiada za edcyję notatki. W przypadku, gdy odwołamy się do metody bez przekazania id, uruchamiany jest fragment odpowiedzialny za dodawnie notatki. Dodatkowo metoda sprawdza, czy została podana poprawna odpowiedź na pytanie zabezpieczające przy dodawniu lub edycji.
+> - Metoda _deleteNoteById()_, korzystając z metody z repozytorium usuwa notatkę wskazaną notatkę. Sprawdza również, czy został podany właściwy autor notatki przy potwierdzeniu usnięcia.
 
 ## Folder _controller_:
 **Klasa _NoteController.java_:**
