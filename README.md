@@ -37,15 +37,15 @@ Aplikacja notatnika pozwala na dodawanie, edytowanie i usuwanie notatek. Został
 > - Metoda _createOrUpdateNote()_ dodaje lub edytuje notatkę i przekierowuje na stronę główną, jeżeli została podana prawidłowa odpowiedź na pytanie zabezpieczające, lub pozostaje na stronie dodawania i wyświetla informację o błędnej odpowiedzi.
 
 ## Folder _resources_:
-**_application.resources_:**
-> AAA
+**_application.properties_:**
+> W _application.properties_ konfigurujemy połączenie z bazą danych, wskazując URL bazy danych, nazwę użytkownika, hasło oraz sterownik. Dodatkowo wykorzystujemy zależność, która tworzy za nas schemat bazy danych, w tym przypadku jest to _update_, które aktualizuje dane w bazie danych, za każdym razem jak coś się zmieni.
 
 ## Folder _templates_:
 **_add-edit-note.html_:**
-> AAA
+> Widok posiadający formularz z polami tytuł, autor, treść, data oraz pytanie zabezpieczające. Posiada przycisk dodający/edytujący notatkę oraz przycisk powrotu do strony głównej. Formularz operuje na obiekcie stworzonym w metodzie _editNoteById()_ w klasie _NoteController_, natomiast korzysta z metody _createOrUpdateNote()_, która działa na endpoincie _/createNote_.
 
 **_delete-note.html_:**
-> AAA
+> Widok posiadający formularz z polem autor oraz przycisk do potwierdzenia usunięcia notatki. Posiada również przycisk powrotu do strony głównej. Formularz operuje na obiekcie _authorDto_ stworzonym w metodzie _deleteNote()_ w klasie _NoteController_, natomiast korzysta z metody _deleteNoteById()_, która działa na endpoincie _/delete/{id}_.
 
 **_list-notes.html_:**
-> AAA
+> Widok odpowiadający za stronę główną, który wyświetla wszystkie notatki. Korzysta z atrybutu _notes_, stworzonym w metodzie _getAllNotes()_ w _NoteController_. Przy każdej notatce są przyciski _Edit_ oraz _Delete_, które przekierowują pod odpowiednie endpointy odpowiedzialne za edycję bądź usuwanie notatki. Na samej górze mamy przycisk _Add note_, który przekierowuje do endpointu odpowiedzialnego za dodawanie notatki.
