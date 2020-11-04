@@ -19,7 +19,7 @@ Aplikacja notatnika pozwala na dodawanie, edytowanie i usuwanie notatek. Został
 
 ## Folder _service_:
 **Klasa _NoteService.java_:**
-> Klasa ta posiada adnotację _@Service_ i odpowiada za implementację metod z repozytorium.
+> Klasa posiadająca adnotację _@Service_ i odpowiadająca za implementację metod z repozytorium.
 > - Na samym początku mamy wstrzyknięte rezporytorium oraz konstruktor z adnotacją _@Autowired_.
 > - Metoda _getAllNotes()_, która wykorzystując metodę dostarczoną przez repozytorium zwraca nam listę wszystkich notatek w bazie danych, jeżeli jakieś się tam znajdują, albo zwraca nam pustą listę, jeżeli baza danych jest pusta.
 > - Metoda _getNoteById()_, która wykorzystując metodę z repozytorium zwraca nam notatkę na podstawie przekazanego id, lub zwracam nam null w przypadku, gdy nie znajdzie notatki.
@@ -28,7 +28,13 @@ Aplikacja notatnika pozwala na dodawanie, edytowanie i usuwanie notatek. Został
 
 ## Folder _controller_:
 **Klasa _NoteController.java_:**
-> AAA
+> Klasa posiadająca adnotację _@Controller_ i odpowiadająca za implementację metod z _NoteService_ jako metod webowych oraz za połączenie z widokiem. Posiada również adnotację _@RequestMapping("/")_, co stanowi domyślny endpoint aplikacji, czy stronę główną.
+> - Na początku mamy wstrzyknięty _NoteService_ oraz konstruktor z adnotacją _@Autowired_.
+> - Metoda _getAllNotes()_ korzystając z metody z _NoteService_ o takiej samej nazwie tworzy listę wszystkich notatek, dodaje do modelu atrybut _notes_, który jest wykorzystywany w widoku oraz zwraca widok _list-notes.html_, który jest stroną główną.
+> - Metoda _editNoteById()_
+> - Metoda _deleteNote()_ dodaje do modelu atrybuty _id_ oraz _authorDto_ i zwraca widok _delete-note.html_, który odpowiada za potwierdzenie usunięcia notatki.
+> - Metoda _deleteNoteById()_ usuwa notatkę i przekierowuje na stronę główną, jeżeli został podany właściwy autor notatki, lub pozostaje na stronie potwierdzenia usunięcia i wyświetla informację o błędnej odpowiedzi.
+> - Metoda _createOrUpdateNote()_ dodaje lub edytuje notatkę i przekierowuje na stronę główną, jeżeli została podana prawidłowa odpowiedź na pytanie zabezpieczające, lub pozostaje na stronie dodawania i wyświetla informację o błędnej odpowiedzi.
 
 ## Folder _resources_:
 **_application.resources_:**
