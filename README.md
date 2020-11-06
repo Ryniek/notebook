@@ -49,3 +49,6 @@ Aplikacja notatnika pozwala na dodawanie, edytowanie i usuwanie notatek. Został
 
 **_list-notes.html_:**
 > Widok odpowiadający za stronę główną, który wyświetla wszystkie notatki. Korzysta z atrybutu _notes_, stworzonym w metodzie _getAllNotes()_ w _NoteController_. Przy każdej notatce są przyciski _Edit_ oraz _Delete_, które przekierowują pod odpowiednie endpointy odpowiedzialne za edycję bądź usuwanie notatki. Na samej górze mamy przycisk _Add note_, który przekierowuje do endpointu odpowiedzialnego za dodawanie notatki.
+
+## Diagram klas:
+> ![diagram klas](/uml/uml.png)
