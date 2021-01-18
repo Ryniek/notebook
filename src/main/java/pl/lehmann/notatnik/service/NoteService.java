@@ -1,7 +1,11 @@
-package pl.lehmann.notatnik;
+package pl.lehmann.notatnik.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.lehmann.notatnik.model.AuthorDto;
+import pl.lehmann.notatnik.model.Note;
+import pl.lehmann.notatnik.model.NoteDto;
+import pl.lehmann.notatnik.repository.NoteRepo;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;

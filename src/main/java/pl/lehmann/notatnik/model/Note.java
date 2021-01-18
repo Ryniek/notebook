@@ -1,4 +1,4 @@
-package pl.lehmann.notatnik;
+package pl.lehmann.notatnik.model;
 
 import javax.persistence.*;
 
